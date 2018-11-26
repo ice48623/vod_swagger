@@ -1,0 +1,238 @@
+openapi: 3.0.0
+info:
+  description: >-
+    This is an api specification for Video-On-Demand service implemented for ICCS484: Professional Practices on Software Technology I at Mahidol University International College
+  version: 1.0.0
+  title: VOD Project
+  contact:
+    email: ice48623@gmail.com
+servers:
+  - url: 'http://localhost:5000'
+paths:
+  '/upload':
+    post:
+      tags:
+        - upload
+      summary: upload file to storage
+      description: upload signle file to storage
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: The status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+                required:
+                  - success
+        '400':
+          description: Bad request.
+        5XX:
+          description: Unexpected error.
+          
+  '/video':
+    get:
+      tags:
+        - video
+      summary: Get all videos in the system
+      description: Get all videos in the system
+      responses:
+        '200':
+          description: Return all videos object as array in JSON object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        video_id:
+                          type: string
+                        sid:
+                          type: string
+                required:
+                  - success
+                  - data
+        '400':
+          description: Bad request.
+        5XX:
+          description: Unexpected error.
+  '/video/{video_id}':
+    get:
+      tags: 
+        - video
+      summary: Get information of given video id
+      description: Get information of given video is return as JSON object
+      parameters:
+        - in: path
+          name: video_id
+          required: true
+          schema:
+            type: string
+          description: The video id
+      responses:
+        '200':
+          description: Return all information of given video id as JSON object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      video_id:
+                        type: string
+                      sid:
+                        type: string
+                      resolutions:
+                          type: object
+                          properties:
+                            res:
+                              type: string
+                            location:
+                              type: string
+                      likes:
+                        type: integer
+                      comments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            sid:
+                              type: string
+                            comment:
+                              type: string
+        '400':
+          description: Bad request.
+        5XX:
+          description: Unexpected error.
+  '/like':
+    post:
+      tags:
+        - like
+      summary: Add like to a given video id
+      description: Add like to a given video id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                video_id:
+                  type: string
+                sid:
+                  type: string
+      responses:
+        '200':
+          description: return whether the operation is success or fail, response with error message if failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+        '400':
+          description: Bad request.
+        5XX:
+          description: Unexpected error.
+  '/unlike':
+    post:
+      tags:
+        - like
+      summary: Add unlike to a given video id
+      description: Add unlike to a given video id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                video_id:
+                  type: string
+                sid:
+                  type: string
+      responses:
+        '200':
+          description: return whether the operation is success or fail, response with error message if failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+        '400':
+          description: Bad request.
+        5XX:
+          description: Unexpected error.
+  '/comment':
+    put:
+      tags:
+        - comment
+      summary: Add a comment message to a given video id
+      description: Add a comment message to a given video id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                video_id:
+                  type: string
+                comment:
+                  type: string
+                sid:
+                  type: string
+      responses:
+        '200':
+          description: return whether the operation is success or fail, response with error message if failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+        '400':
+          description: Bad request.
+        5XX:
+          description: Unexpected error.
