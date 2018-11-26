@@ -12,6 +12,6 @@ docker pull swaggerapi/swagger-editor
 docker run -d -p 80:8080 swaggerapi/swagger-editor
 ```
 
-2) Open 'localhost' in the browser
+2) Navigating to `http://localhost` in your browser.
 
 3) File -> Import File -> Select openapi.yaml
