@@ -24,6 +24,10 @@ paths:
                 file:
                   type: string
                   format: binary
+                name:
+                  type: string
+                uid:
+                  type: string
       responses:
         '200':
           description: The status
@@ -70,7 +74,7 @@ paths:
                           type: string
                         video_id:
                           type: string
-                        sid:
+                        uid:
                           type: string
                 required:
                   - success
@@ -111,12 +115,12 @@ paths:
                         type: string
                       video_id:
                         type: string
-                      sid:
+                      uid:
                         type: string
                       resolutions:
                           type: object
                           properties:
-                            res:
+                            resolution:
                               type: string
                             location:
                               type: string
@@ -127,7 +131,7 @@ paths:
                         items:
                           type: object
                           properties:
-                            sid:
+                            uid:
                               type: string
                             comment:
                               type: string
@@ -150,7 +154,7 @@ paths:
               properties:
                 video_id:
                   type: string
-                sid:
+                uid:
                   type: string
       responses:
         '200':
@@ -183,7 +187,7 @@ paths:
               properties:
                 video_id:
                   type: string
-                sid:
+                uid:
                   type: string
       responses:
         '200':
@@ -218,7 +222,7 @@ paths:
                   type: string
                 comment:
                   type: string
-                sid:
+                uid:
                   type: string
       responses:
         '200':
