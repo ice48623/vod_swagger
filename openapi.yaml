@@ -1,7 +1,9 @@
 openapi: 3.0.0
 info:
   description: >-
-    This is an api specification for Video-On-Demand service implemented for ICCS484: Professional Practices on Software Technology I at Mahidol University International College
+    This is an api specification for Video-On-Demand service implemented for
+    ICCS484: Professional Practices on Software Technology I at Mahidol
+    University International College
   version: 1.0.0
   title: VOD Project
   contact:
@@ -9,7 +11,7 @@ info:
 servers:
   - url: 'http://localhost:5000'
 paths:
-  '/upload':
+  /upload:
     post:
       tags:
         - upload
@@ -46,8 +48,7 @@ paths:
           description: Bad request.
         5XX:
           description: Unexpected error.
-          
-  '/video':
+  /video:
     get:
       tags:
         - video
@@ -76,6 +77,14 @@ paths:
                           type: string
                         uid:
                           type: string
+                        img:
+                          type: string
+                        likes:
+                          type: integer
+                          format: int32
+                        comments:
+                          type: integer
+                          format: int32
                 required:
                   - success
                   - data
@@ -85,7 +94,7 @@ paths:
           description: Unexpected error.
   '/video/{video_id}':
     get:
-      tags: 
+      tags:
         - video
       summary: Get information of given video id
       description: Get information of given video is return as JSON object
@@ -118,12 +127,12 @@ paths:
                       uid:
                         type: string
                       resolutions:
-                          type: object
-                          properties:
-                            resolution:
-                              type: string
-                            location:
-                              type: string
+                        type: object
+                        properties:
+                          resolution:
+                            type: string
+                          location:
+                            type: string
                       likes:
                         type: integer
                       comments:
@@ -139,7 +148,7 @@ paths:
           description: Bad request.
         5XX:
           description: Unexpected error.
-  '/like':
+  /like:
     post:
       tags:
         - like
@@ -158,7 +167,9 @@ paths:
                   type: string
       responses:
         '200':
-          description: return whether the operation is success or fail, response with error message if failed
+          description: >-
+            return whether the operation is success or fail, response with error
+            message if failed
           content:
             application/json:
               schema:
@@ -172,7 +183,7 @@ paths:
           description: Bad request.
         5XX:
           description: Unexpected error.
-  '/unlike':
+  /unlike:
     post:
       tags:
         - like
@@ -191,7 +202,9 @@ paths:
                   type: string
       responses:
         '200':
-          description: return whether the operation is success or fail, response with error message if failed
+          description: >-
+            return whether the operation is success or fail, response with error
+            message if failed
           content:
             application/json:
               schema:
@@ -205,7 +218,7 @@ paths:
           description: Bad request.
         5XX:
           description: Unexpected error.
-  '/comment':
+  /comment:
     put:
       tags:
         - comment
@@ -226,7 +239,9 @@ paths:
                   type: string
       responses:
         '200':
-          description: return whether the operation is success or fail, response with error message if failed
+          description: >-
+            return whether the operation is success or fail, response with error
+            message if failed
           content:
             application/json:
               schema:
