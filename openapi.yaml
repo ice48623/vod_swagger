@@ -30,6 +30,9 @@ paths:
                   type: string
                 uid:
                   type: string
+                img:
+                  type: string
+                  format: bianry
       responses:
         '200':
           description: The status
