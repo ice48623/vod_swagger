@@ -129,13 +129,19 @@ paths:
                         type: string
                       uid:
                         type: string
-                      resolutions:
-                        type: object
-                        properties:
-                          resolution:
-                            type: string
-                          location:
-                            type: string
+                      source:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            src:
+                              type: string
+                            type:
+                              type: string
+                            label:
+                              type: string
+                            res:
+                              type: integer
                       likes:
                         type: integer
                       comments:
