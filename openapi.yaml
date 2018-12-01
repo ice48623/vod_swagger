@@ -264,3 +264,114 @@ paths:
           description: Bad request.
         5XX:
           description: Unexpected error.
+  
+  /login:
+    post:
+      tags:
+        - user
+      summary: Login to the system
+      description: Login to the system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: >-
+            return whether the operation is success or fail, response with error
+            message if failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      uid:
+                        type: string
+                      username:
+                        type: string
+        '400':
+          description: Bad request.
+        5XX:
+          description: Unexpected error.
+          
+  /logout:
+    post:
+      tags:
+        - user
+      summary: Logout from the system
+      description: Logout from the system
+      responses:
+        '200':
+          description: >-
+            return whether the operation is success or fail, response with error
+            message if failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+        '400':
+          description: Bad request.
+        5XX:
+          description: Unexpected error.
+  
+  /register:
+    post:
+      tags:
+        - user
+      summary: Register user to the system
+      description: Register user to the system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: >-
+            return whether the operation is success or fail, response with error
+            message if failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      uid:
+                        type: string
+                      username:
+                        type: string
+        '400':
+          description: Bad request.
+        5XX:
+          description: Unexpected error.
