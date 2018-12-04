@@ -239,6 +239,42 @@ paths:
         5XX:
           description: Unexpected error.
   /comment:
+    get:
+      tags:
+        - comment
+      summary: Get all comment in given video id
+      description: Get all comment in given video id
+      responses:
+        '200':
+          description: >-
+            return whether the operation is success or fail, response with error
+            message if failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      comments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            comment:
+                              type: string
+                            uid:
+                              type: string
+        '400':
+          description: Bad request.
+        5XX:
+          description: Unexpected error.
+                          
     put:
       tags:
         - comment
